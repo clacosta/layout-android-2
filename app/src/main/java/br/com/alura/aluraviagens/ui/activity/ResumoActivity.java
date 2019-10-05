@@ -50,15 +50,15 @@ public class ResumoActivity extends AppCompatActivity {
         data.setText(dataFormatadaDaViagem);
     }
 
-    private void mostraPreco(Pacote pacoteSaoPaulo) {
+    private void mostraPreco(Pacote pacote) {
         TextView preco = findViewById(R.id.resumo_pacote_preco);
-        String moedaBrasileira = MoedaUtil.formataParaBrasileira(pacoteSaoPaulo.getPreco());
+        String moedaBrasileira = MoedaUtil.formataParaBrasileira(pacote.getPreco());
         preco.setText(moedaBrasileira);
     }
 
-    private void mostraDias(Pacote pacoteSaoPaulo) {
+    private void mostraDias(Pacote pacote) {
         TextView dias = findViewById(R.id.resumo_pacote_dias);
-        String diasEmTexto = DiasUtil.formataEmTexto(pacoteSaoPaulo.getDias());
+        String diasEmTexto = DiasUtil.formataEmTexto(pacote.getDias());
         dias.setText(diasEmTexto);
     }
 
