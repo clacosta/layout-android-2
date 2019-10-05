@@ -11,6 +11,8 @@ import br.com.alura.aluraviagens.R;
 import br.com.alura.aluraviagens.model.Pacote;
 import br.com.alura.aluraviagens.util.MoedaUtil;
 
+import static br.com.alura.aluraviagens.ui.activity.PacoteActivity.CHAVE_PACOTE;
+
 public class PagamentoActivity extends AppCompatActivity {
 
     public static final String TITULO_APPBAR = "Pagemanto";
@@ -19,27 +21,35 @@ public class PagamentoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pagamento);
-
         setTitle(TITULO_APPBAR);
+        carregaPacoteRecebido();
+    }
 
+    private void carregaPacoteRecebido() {
         Intent intent = getIntent();
-        if (intent.hasExtra("pacote")) {
-            final Pacote pacote = (Pacote) intent.getSerializableExtra("pacote");
-
+        if (intent.hasExtra(CHAVE_PACOTE)) {
+            final Pacote pacote = (Pacote) intent.getSerializableExtra(CHAVE_PACOTE);
             mostraPreco(pacote);
-
-            Button botaoFinalizaPagamento = findViewById(R.id.pagamento_botao_finaliza_compra);
-            botaoFinalizaPagamento.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(
-                            PagamentoActivity.this,
-                            ResumoCompraActivity.class);
-                    intent.putExtra("pacote", pacote);
-                    startActivity(intent);
-                }
-            });
+            configuraBotao(pacote);
         }
+    }
+
+    private void configuraBotao(final Pacote pacote) {
+        Button botaoFinalizaPagamento = findViewById(R.id.pagamento_botao_finaliza_compra);
+        botaoFinalizaPagamento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vaiParaResumoCompra(pacote);
+            }
+        });
+    }
+
+    private void vaiParaResumoCompra(Pacote pacote) {
+        Intent intent = new Intent(
+                PagamentoActivity.this,
+                ResumoCompraActivity.class);
+        intent.putExtra(CHAVE_PACOTE, pacote);
+        startActivity(intent);
     }
 
     private void mostraPreco(Pacote pacote) {
