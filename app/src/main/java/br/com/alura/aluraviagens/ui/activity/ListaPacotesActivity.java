@@ -3,6 +3,8 @@ package br.com.alura.aluraviagens.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.List;
@@ -20,16 +22,24 @@ public class ListaPacotesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_pacotes);
+
         setTitle(TITULO_APPBAR);
+
         configuraLista();
-        Intent intent = new Intent(this, ResumoActivity.class);
-        startActivity(intent);
+
     }
 
     private void configuraLista() {
         ListView listaPacotes = findViewById(R.id.lista_pacotes_listview);
         List<Pacote> pacotes = new PacoteDAO().lista();
         listaPacotes.setAdapter(new ListaPacoteAdapter(pacotes, this));
+        listaPacotes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(ListaPacotesActivity.this, ResumoPacoteActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,14 +18,14 @@ import br.com.alura.aluraviagens.util.DiasUtil;
 import br.com.alura.aluraviagens.util.MoedaUtil;
 import br.com.alura.aluraviagens.util.ResourceUtil;
 
-public class ResumoActivity extends AppCompatActivity {
+public class ResumoPacoteActivity extends AppCompatActivity {
 
     public static final String TITULO_APPBAR = "Resumo do pacote";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_resumo);
+        setContentView(R.layout.activity_resumo_pacote);
 
         setTitle(TITULO_APPBAR);
 
@@ -39,8 +41,14 @@ public class ResumoActivity extends AppCompatActivity {
         mostraPreco(pacoteSaoPaulo);
         mostraData(pacoteSaoPaulo);
 
-        Intent intent = new Intent(this, PagamentoActivity.class);
-        startActivity(intent);
+        Button botaoRealizaPagamento = findViewById(R.id.resumo_pacote_botao_realiza_pagamento);
+        botaoRealizaPagamento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ResumoPacoteActivity.this, PagamentoActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
