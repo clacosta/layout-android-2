@@ -21,7 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"/>
 
     <TextView
         android:id="@+id/pagamento_valor_da_compra"
@@ -31,7 +31,7 @@
         android:layout_marginTop="20dp"
         android:text="Valor da compra:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pagamento_orientacao" />
+        app:layout_constraintTop_toBottomOf="@+id/pagamento_orientacao"/>
 
     <TextView
         android:id="@+id/pagamento_preco_pacote"
@@ -42,7 +42,7 @@
         android:textColor="@android:color/holo_green_dark"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/pagamento_valor_da_compra"
-        app:layout_constraintTop_toBottomOf="@+id/pagamento_valor_da_compra" />
+        app:layout_constraintTop_toBottomOf="@+id/pagamento_valor_da_compra"/>
 
     <EditText
         android:id="@+id/pagamento_numero_cartao"
@@ -56,29 +56,63 @@
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pagamento_preco_pacote" />
+        app:layout_constraintTop_toBottomOf="@+id/pagamento_preco_pacote"/>
 
     <EditText
         android:id="@+id/pagamento_mes_cartao"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/pagamento_numero_cartao"
-        app:layout_constraintStart_toStartOf="@id/pagamento_numero_cartao"
+        android:hint="MM"
         android:inputType="number"
         android:maxLength="2"
-        android:hint="MM"
         android:textAlignment="center"
-        />
+        app:layout_constraintBottom_toBottomOf="@+id/pagamento_cvc_cartao"
+        app:layout_constraintStart_toStartOf="@id/pagamento_numero_cartao"/>
 
     <EditText
         android:id="@+id/pagamento_ano_cartao"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/pagamento_numero_cartao"
-        app:layout_constraintStart_toEndOf="@id/pagamento_mes_cartao"
+        android:hint="AA"
         android:inputType="number"
         android:maxLength="2"
-        android:hint="AA"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/pagamento_cvc_cartao"
+        app:layout_constraintStart_toEndOf="@id/pagamento_mes_cartao"/>
+
+    <EditText
+        android:id="@+id/pagamento_cvc_cartao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/pagamento_numero_cartao"
+        app:layout_constraintEnd_toEndOf="@id/pagamento_numero_cartao"
+        android:inputType="number"
+        android:maxLength="3"
+        android:hint="CVC"
+        android:textAlignment="center"
+        android:drawableLeft="@drawable/ic_cvc_cartao_de_credito"/>
+
+    <EditText
+        android:id="@+id/pagamento_nome_no_cartao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/pagamento_numero_cartao"
+        app:layout_constraintStart_toStartOf="@+id/pagamento_numero_cartao"
+        app:layout_constraintTop_toBottomOf="@+id/pagamento_cvc_cartao"
+        android:inputType="text"
+        android:hint="Nome no cartão"/>
+
+    <Button
+        android:id="@+id/pagamento_botao_finaliza_compra"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/botao_arredondado_laranja"
+        android:text="Finalizar compra"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@+id/pagamento_nome_no_cartao"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/pagamento_nome_no_cartao"
+        app:layout_constraintTop_toBottomOf="@+id/pagamento_nome_no_cartao" />
+
 
 </android.support.constraint.ConstraintLayout>
